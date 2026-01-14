@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: frappe_fabric
+Version: 1.0.0
+Summary: Fabric and Roll Management for ERPNext
+Author: Your Company
+Author-email: info@yourcompany.com
+Requires-Python: >=3.10
+Requires-Dist: frappe
+Requires-Dist: erpnext
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

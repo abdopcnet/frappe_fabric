@@ -1,136 +1,134 @@
-# دليل التثبيت والتشغيل الكامل
-# Frappe Fabric Management App Installation Guide
+# Installation Guide
 
----
+Complete installation and setup guide for Frappe Fabric Management App.
 
-## 📋 المتطلبات الأساسية
+## Requirements
 
-### البرمجيات المطلوبة:
-- Frappe Framework v14 أو أحدث
-- ERPNext v14 أو أحدث
+### Software Required:
+- Frappe Framework v14 or higher
+- ERPNext v14 or higher
 - Python 3.10+
 - Node.js 18+
 - MariaDB 10.6+
 - Redis
 
-### المكتبات الإضافية:
-[code]bash
+### Additional Libraries:
+
+```bash
 pip install qrcode Pillow
-[code]
+```
 
----
+## Installation Steps
 
-## 🚀 خطوات التثبيت
+### Step 1: Copy Files
 
-### الخطوة 1: نسخ الملفات
-
-[code]bash
-# الانتقال لمجلد التطبيقات
+```bash
+# Go to apps directory
 cd ~/frappe-bench/apps
 
-# إنشاء مجلد التطبيق
+# Create app folder
 mkdir frappe_fabric
 
-# نسخ جميع الملفات من المجلد المرفق
+# Copy all files from source folder
 cp -r /path/to/frappe_fabric_app/* frappe_fabric/
-[code]
+```
 
-### الخطوة 2: تثبيت التطبيق
+### Step 2: Install App
 
-[code]bash
-# من مجلد frappe-bench
+```bash
+# From frappe-bench directory
 cd ~/frappe-bench
 
-# تثبيت التبعيات
+# Install dependencies
 bench setup requirements
 
-# تثبيت التطبيق على الموقع
+# Install app on site
 bench --site your-site.local install-app frappe_fabric
 
-# تطبيق التغييرات
+# Run migrations
 bench migrate
 
-# مسح الكاش
+# Clear cache
 bench clear-cache
 
-# إعادة بناء الأصول
+# Build assets
 bench build
 
-# إعادة تشغيل الخادم
+# Restart server
 bench restart
-[code]
+```
 
-### الخطوة 3: التحقق من التثبيت
+### Step 3: Verify Installation
 
-[code]bash
-# التحقق من التطبيقات المثبتة
+```bash
+# Check installed apps
 bench --site your-site.local list-apps
 
-# يجب أن يظهر: frappe_fabric
-[code]
+# Should show: frappe_fabric
+```
 
----
+## File Structure
 
-## 📁 هيكل الملفات
-
-[code]
+```
 frappe_fabric_app/
 ├── frappe_fabric/
-│   ├── __init__.py                 # تهيئة الموديول
-│   ├── hooks.py                    # إعدادات التطبيق
-│   ├── install.py                  # سكربتات التثبيت
+│   ├── __init__.py                 # Module initialization
+│   ├── hooks.py                    # App settings
+│   ├── install.py                  # Installation scripts
 │   │
 │   ├── api/                        # REST APIs
 │   │   ├── __init__.py
-│   │   ├── roll.py                 # APIs الرولونات
-│   │   ├── receipt.py              # APIs الاستلام
-│   │   ├── cutting.py              # APIs القص والبيع
-│   │   └── reports.py              # APIs التقارير
+│   │   ├── roll.py                 # Roll APIs
+│   │   ├── receipt.py              # Receipt APIs
+│   │   ├── cutting.py              # Cutting and Sales APIs
+│   │   └── reports.py              # Reports APIs
 │   │
-│   ├── utils/                      # أدوات مساعدة
+│   ├── utils/                      # Helper tools
 │   │   ├── __init__.py
-│   │   ├── roll_utils.py           # أدوات الرولون
-│   │   ├── qr_generator.py         # توليد QR
-│   │   └── accounting_utils.py     # القيود المحاسبية
+│   │   ├── roll_utils.py           # Roll utilities
+│   │   ├── qr_generator.py         # QR code generation
+│   │   └── accounting_utils.py     # Accounting entries
 │   │
-│   └── fabric_management/          # الموديول الرئيسي
+│   └── fabric_management/          # Main module
 │       └── doctype/                # DocTypes
 │
-├── setup.py                        # ملف الإعداد
-├── requirements.txt                # التبعيات
-└── README.md                       # التوثيق
-[code]
+├── setup.py                        # Setup file
+├── requirements.txt                # Dependencies
+└── README.md                       # Documentation
+```
 
----
+## Required DocTypes
 
-## 🗂️ DocTypes المطلوب إنشاؤها
+The app includes all required DocTypes. They will be created automatically during installation.
 
-### 1. Fabric Item (المادة)
-| الحقل | النوع | الوصف |
-|-------|------|-------|
-| item_code | Data | كود المادة (Primary) |
-| item_name | Data | اسم المادة |
-| fabric_type | Select | نوع القماش |
-| width | Float | العرض بالسم |
-| standard_rate | Currency | سعر البيع |
+### 1. Fabric Item
 
-### 2. Fabric Roll (الرولون)
-| الحقل | النوع | الوصف |
-|-------|------|-------|
-| roll_number | Data | رقم الرولون (Primary) |
-| item_code | Link: Fabric Item | كود المادة |
-| original_length | Float | الطول الأصلي |
-| current_length | Float | الطول الحالي |
-| warehouse | Link: Warehouse | المستودع |
-| status | Select | الحالة |
+Main DocType for fabric items.
 
----
+Key fields:
+- item_code: Item code (Primary)
+- item_name: Item name
+- fabric_type: Fabric type
+- width: Width in cm
+- standard_rate: Selling price
 
-## 📊 الربط مع واجهات React
+### 2. Fabric Roll
 
-### ملف خدمة الاتصال
+Main DocType for individual rolls.
 
-[code]typescript
+Key fields:
+- roll_number: Roll number (Primary)
+- item_code: Link to Fabric Item
+- original_length: Original length
+- current_length: Current length
+- warehouse: Warehouse
+- status: Status
+
+## Integration with React Frontend
+
+### Service File
+
+```typescript
 // src/services/fabric.service.ts
 
 const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL;
@@ -163,9 +161,9 @@ export const fabricService = {
     return response.json();
   }
 };
-[code]
+```
 
 ---
 
-**تاريخ التحديث:** يناير 2024
-**الإصدار:** 1.0.0
+**Updated:** January 2024
+**Version:** 1.0.0

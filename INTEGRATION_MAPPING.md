@@ -1,39 +1,43 @@
-# خريطة الربط بين واجهات React و APIs الفرابي
+# Integration Mapping
 
-## 1. شجرة المنتجات (EnhancedProductTree)
+React frontend to Frappe API endpoints mapping.
 
-| الإجراء | API Endpoint |
-|---------|--------------|
-| عرض المواد | frappe_fabric.api.roll.search_rolls |
-| تفاصيل الرولون | frappe_fabric.api.roll.get_roll |
-| حركات الرولون | frappe_fabric.api.roll.get_roll_movements |
-| تحديث الموقع | frappe_fabric.api.roll.update_roll_location |
+## 1. Product Tree (EnhancedProductTree)
 
-## 2. استلام المواد
+| Action | API Endpoint |
+|--------|--------------|
+| Show Items | frappe_fabric.api.roll.search_rolls |
+| Roll Details | frappe_fabric.api.roll.get_roll |
+| Roll Movements | frappe_fabric.api.roll.get_roll_movements |
+| Update Location | frappe_fabric.api.roll.update_roll_location |
 
-| الإجراء | API Endpoint |
-|---------|--------------|
-| إنشاء استلام | frappe_fabric.api.receipt.create_container_receipt |
-| مسح رولون | frappe_fabric.api.receipt.scan_roll |
-| إكمال الاستلام | frappe_fabric.api.receipt.complete_receipt |
+## 2. Material Receipt
 
-## 3. قص العينات والبيع
+| Action | API Endpoint |
+|--------|--------------|
+| Create Receipt | frappe_fabric.api.receipt.create_container_receipt |
+| Scan Roll | frappe_fabric.api.receipt.scan_roll |
+| Complete Receipt | frappe_fabric.api.receipt.complete_receipt |
 
-| الإجراء | API Endpoint |
-|---------|--------------|
-| قص عينات | frappe_fabric.api.cutting.create_sample_cutting |
-| بيع مفرد | frappe_fabric.api.cutting.create_retail_sale |
+## 3. Sample Cutting and Sales
 
-## 4. التقارير
+| Action | API Endpoint |
+|--------|--------------|
+| Sample Cutting | frappe_fabric.api.cutting.create_sample_cutting |
+| Retail Sale | frappe_fabric.api.cutting.create_retail_sale |
 
-| الإجراء | API Endpoint |
-|---------|--------------|
-| رصيد المخزون | frappe_fabric.api.reports.get_stock_balance |
-| حركات | frappe_fabric.api.reports.get_movement_history |
-| المبيعات | frappe_fabric.api.reports.get_sales_report |
+## 4. Reports
 
-## إعداد متغيرات البيئة
+| Action | API Endpoint |
+|--------|--------------|
+| Stock Balance | frappe_fabric.api.reports.get_stock_balance |
+| Movements | frappe_fabric.api.reports.get_movement_history |
+| Sales | frappe_fabric.api.reports.get_sales_report |
 
+## Environment Variables
+
+```
 VITE_ERPNEXT_URL=https://your-site.erpnext.com
 VITE_ERPNEXT_API_KEY=your_api_key
 VITE_ERPNEXT_API_SECRET=your_api_secret
+```

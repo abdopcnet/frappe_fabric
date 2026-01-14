@@ -1,50 +1,47 @@
-# API Reference - مرجع واجهات البرمجة
-# Frappe Fabric Management APIs
+# API Reference
 
----
+Frappe Fabric Management API endpoints.
 
-## 🔐 المصادقة (Authentication)
+## Authentication
 
-جميع الطلبات تتطلب مصادقة عبر API Key:
+All requests require API key authentication:
 
-[code]
+```
 Authorization: token {API_KEY}:{API_SECRET}
 Content-Type: application/json
-[code]
+```
 
----
-
-## 📦 Roll APIs - واجهات الرولونات
+## Roll APIs
 
 ### GET /api/method/frappe_fabric.api.roll.get_roll
-جلب بيانات رولون محدد
 
-**المعاملات:**
-| المعامل | النوع | مطلوب | الوصف |
-|---------|------|-------|-------|
-| roll_number | string | ✅ | رقم الرولون |
+Get roll details by roll number.
 
-**الاستجابة:**
-[code]json
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| roll_number | string | Yes | Roll number |
+
+**Response:**
+```json
 {
   "message": {
     "roll_number": "ROLL-20240115-0001-ABCD",
     "item_code": "FAB-001",
-    "item_name": "قماش قطني أبيض",
+    "item_name": "Cotton Fabric White",
     "current_length": 45.0,
     "warehouse": "Main Warehouse",
     "status": "Available"
   }
 }
-[code]
-
----
+```
 
 ### POST /api/method/frappe_fabric.api.roll.search_rolls
-البحث في الرولونات
 
-**الجسم (Body):**
-[code]json
+Search rolls.
+
+**Body:**
+```json
 {
   "filters": {
     "item_code": "FAB-001",
@@ -55,17 +52,16 @@ Content-Type: application/json
   "page": 1,
   "page_size": 20
 }
-[code]
+```
 
----
-
-## 📥 Receipt APIs - واجهات الاستلام
+## Receipt APIs
 
 ### POST /api/method/frappe_fabric.api.receipt.create_container_receipt
-إنشاء استلام كونتينر جديد
 
-**الجسم:**
-[code]json
+Create new container receipt.
+
+**Body:**
+```json
 {
   "data": {
     "container_number": "CONT-1001",
@@ -80,15 +76,14 @@ Content-Type: application/json
     ]
   }
 }
-[code]
-
----
+```
 
 ### POST /api/method/frappe_fabric.api.receipt.scan_roll
-مسح/إضافة رولون للاستلام
 
-**الجسم:**
-[code]json
+Scan/add roll to receipt.
+
+**Body:**
+```json
 {
   "receipt_no": "CR-2024-0001",
   "roll_data": {
@@ -98,17 +93,16 @@ Content-Type: application/json
     "bin_location": "A-01-02"
   }
 }
-[code]
+```
 
----
-
-## ✂️ Cutting APIs - واجهات القص والبيع
+## Cutting APIs
 
 ### POST /api/method/frappe_fabric.api.cutting.create_sample_cutting
-إنشاء قص عينات
 
-**الجسم:**
-[code]json
+Create sample cutting.
+
+**Body:**
+```json
 {
   "data": {
     "warehouse": "Main Warehouse",
@@ -123,15 +117,14 @@ Content-Type: application/json
     "submit": true
   }
 }
-[code]
-
----
+```
 
 ### POST /api/method/frappe_fabric.api.cutting.create_retail_sale
-إنشاء بيع مفرد
 
-**الجسم:**
-[code]json
+Create retail sale.
+
+**Body:**
+```json
 {
   "data": {
     "roll_number": "ROLL-20240115-0001-ABCD",
@@ -141,26 +134,25 @@ Content-Type: application/json
     "submit": true
   }
 }
-[code]
+```
 
----
-
-## 📊 Reports APIs - واجهات التقارير
+## Reports APIs
 
 ### POST /api/method/frappe_fabric.api.reports.get_stock_balance
-تقرير رصيد المخزون
 
-**الجسم:**
-[code]json
+Stock balance report.
+
+**Body:**
+```json
 {
   "filters": {
     "item_code": "FAB-001",
     "warehouse": "Main Warehouse"
   }
 }
-[code]
+```
 
 ---
 
-**تاريخ التحديث:** يناير 2024
-**الإصدار:** 1.0.0
+**Updated:** January 2024
+**Version:** 1.0.0
