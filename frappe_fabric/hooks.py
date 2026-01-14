@@ -64,9 +64,6 @@ has_permission = {
     "Fabric Roll": "frappe_fabric.permissions.fabric_roll_permission"
 }
 
-# Boot Session
-boot_session = "frappe_fabric.boot.boot_session"
-
 # Desk Card
 desk_card = {
     "doctype": "Fabric Roll",
