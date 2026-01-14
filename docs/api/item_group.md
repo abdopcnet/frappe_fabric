@@ -1,86 +1,96 @@
 # Item Group API
 
+## Setup
+
+```javascript
+const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL || 'https://your-site.com';
+const API_KEY = import.meta.env.VITE_ERPNEXT_API_KEY;
+const API_SECRET = import.meta.env.VITE_ERPNEXT_API_SECRET;
+
+const headers = {
+  'Authorization': `token ${API_KEY}:${API_SECRET}`,
+  'Content-Type': 'application/json'
+};
+```
+
 ## GET
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Item Group/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getItemGroup = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Item Group/${name}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## GET_MANY
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Item Group",
-    params={
-        'fields': '["name","item_group_name","parent_item_group"]',
-        'limit_page_length': 100
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getItemGroups = async (filters = []) => {
+  const params = new URLSearchParams({
+    fields: JSON.stringify(['name', 'item_group_name', 'parent_item_group']),
+    filters: JSON.stringify(filters),
+    limit_page_length: 100
+  });
+  
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Item Group?${params}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## POST
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Item Group",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "item_group_name": "Fabrics",
-        "parent_item_group": "All Item Groups"
+```javascript
+const createItemGroup = async (itemGroupData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Item Group`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(itemGroupData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## PUT
 
-```python
-import requests
-
-response = requests.put(
-    "https://your-site.com/api/resource/Item Group/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "item_group_name": "Updated Fabrics"
+```javascript
+const updateItemGroup = async (name, updateData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Item Group/${name}`,
+    {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(updateData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## DELETE
 
-```python
-import requests
-
-response = requests.delete(
-    "https://your-site.com/api/resource/Item Group/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const deleteItemGroup = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Item Group/${name}`,
+    {
+      method: 'DELETE',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```

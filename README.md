@@ -89,7 +89,6 @@ frappe_fabric/
 ## Documentation
 
 - [Installation Guide](INSTALLATION_GUIDE.md)
-- [API Reference](API_REFERENCE.md)
 - [DocType Schema](DOCTYPES_SCHEMA.md)
 - [Integration Mapping](INTEGRATION_MAPPING.md)
 - [App File Structure](app_file_structure.md)

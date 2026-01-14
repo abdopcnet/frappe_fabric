@@ -1,86 +1,96 @@
 # Fabric Color API
 
+## Setup
+
+```javascript
+const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL || 'https://your-site.com';
+const API_KEY = import.meta.env.VITE_ERPNEXT_API_KEY;
+const API_SECRET = import.meta.env.VITE_ERPNEXT_API_SECRET;
+
+const headers = {
+  'Authorization': `token ${API_KEY}:${API_SECRET}`,
+  'Content-Type': 'application/json'
+};
+```
+
 ## GET
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Fabric Color/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getFabricColor = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Color/${name}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## GET_MANY
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Fabric Color",
-    params={
-        'fields': '["name","color_code","color_name"]',
-        'limit_page_length': 100
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getFabricColors = async (filters = []) => {
+  const params = new URLSearchParams({
+    fields: JSON.stringify(['name', 'color_code', 'color_name']),
+    filters: JSON.stringify(filters),
+    limit_page_length: 100
+  });
+  
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Color?${params}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## POST
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Fabric Color",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "color_code": "WHITE",
-        "color_name": "White"
+```javascript
+const createFabricColor = async (colorData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Color`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(colorData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## PUT
 
-```python
-import requests
-
-response = requests.put(
-    "https://your-site.com/api/resource/Fabric Color/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "color_name": "Pure White"
+```javascript
+const updateFabricColor = async (name, updateData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Color/${name}`,
+    {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(updateData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## DELETE
 
-```python
-import requests
-
-response = requests.delete(
-    "https://your-site.com/api/resource/Fabric Color/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const deleteFabricColor = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Color/${name}`,
+    {
+      method: 'DELETE',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```

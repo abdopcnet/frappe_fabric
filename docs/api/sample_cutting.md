@@ -1,118 +1,128 @@
 # Sample Cutting API
 
+## Setup
+
+```javascript
+const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL || 'https://your-site.com';
+const API_KEY = import.meta.env.VITE_ERPNEXT_API_KEY;
+const API_SECRET = import.meta.env.VITE_ERPNEXT_API_SECRET;
+
+const headers = {
+  'Authorization': `token ${API_KEY}:${API_SECRET}`,
+  'Content-Type': 'application/json'
+};
+```
+
 ## GET
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Sample Cutting/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getSampleCutting = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Sample Cutting/${name}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## GET_MANY
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Sample Cutting",
-    params={
-        'fields': '["name","warehouse","purpose","total_cut_qty","status","posting_date"]',
-        'limit_page_length': 100
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getSampleCuttings = async (filters = []) => {
+  const params = new URLSearchParams({
+    fields: JSON.stringify(['name', 'warehouse', 'purpose', 'total_cut_qty', 'status', 'posting_date']),
+    filters: JSON.stringify(filters),
+    limit_page_length: 100
+  });
+  
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Sample Cutting?${params}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## POST
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Sample Cutting",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "warehouse": "Main Warehouse",
-        "purpose": "Customer Sample",
-        "posting_date": "2024-01-20",
-        "items": []
+```javascript
+const createSampleCutting = async (cuttingData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Sample Cutting`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(cuttingData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## PUT
 
-```python
-import requests
-
-response = requests.put(
-    "https://your-site.com/api/resource/Sample Cutting/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "remarks": "Updated remarks"
+```javascript
+const updateSampleCutting = async (name, updateData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Sample Cutting/${name}`,
+    {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(updateData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## DELETE
 
-```python
-import requests
-
-response = requests.delete(
-    "https://your-site.com/api/resource/Sample Cutting/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const deleteSampleCutting = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Sample Cutting/${name}`,
+    {
+      method: 'DELETE',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```
 
 ## SUBMIT
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Sample Cutting/{name}/submit",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const submitSampleCutting = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Sample Cutting/${name}/submit`,
+    {
+      method: 'POST',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```
 
 ## CANCEL
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Sample Cutting/{name}/cancel",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const cancelSampleCutting = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Sample Cutting/${name}/cancel`,
+    {
+      method: 'POST',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```

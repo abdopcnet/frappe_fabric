@@ -1,87 +1,96 @@
 # Supplier API
 
+## Setup
+
+```javascript
+const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL || 'https://your-site.com';
+const API_KEY = import.meta.env.VITE_ERPNEXT_API_KEY;
+const API_SECRET = import.meta.env.VITE_ERPNEXT_API_SECRET;
+
+const headers = {
+  'Authorization': `token ${API_KEY}:${API_SECRET}`,
+  'Content-Type': 'application/json'
+};
+```
+
 ## GET
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Supplier/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getSupplier = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Supplier/${name}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## GET_MANY
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Supplier",
-    params={
-        'fields': '["name","supplier_name","supplier_type"]',
-        'limit_page_length': 100
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getSuppliers = async (filters = []) => {
+  const params = new URLSearchParams({
+    fields: JSON.stringify(['name', 'supplier_name', 'supplier_type']),
+    filters: JSON.stringify(filters),
+    limit_page_length: 100
+  });
+  
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Supplier?${params}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## POST
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Supplier",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "supplier_name": "Fabric Supplier Co.",
-        "supplier_type": "Company",
-        "country": "Country"
+```javascript
+const createSupplier = async (supplierData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Supplier`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(supplierData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## PUT
 
-```python
-import requests
-
-response = requests.put(
-    "https://your-site.com/api/resource/Supplier/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "supplier_name": "Updated Supplier Name"
+```javascript
+const updateSupplier = async (name, updateData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Supplier/${name}`,
+    {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(updateData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## DELETE
 
-```python
-import requests
-
-response = requests.delete(
-    "https://your-site.com/api/resource/Supplier/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const deleteSupplier = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Supplier/${name}`,
+    {
+      method: 'DELETE',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```

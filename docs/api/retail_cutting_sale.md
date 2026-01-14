@@ -1,119 +1,128 @@
 # Retail Cutting Sale API
 
+## Setup
+
+```javascript
+const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL || 'https://your-site.com';
+const API_KEY = import.meta.env.VITE_ERPNEXT_API_KEY;
+const API_SECRET = import.meta.env.VITE_ERPNEXT_API_SECRET;
+
+const headers = {
+  'Authorization': `token ${API_KEY}:${API_SECRET}`,
+  'Content-Type': 'application/json'
+};
+```
+
 ## GET
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Retail Cutting Sale/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getRetailCuttingSale = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Retail Cutting Sale/${name}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## GET_MANY
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Retail Cutting Sale",
-    params={
-        'fields': '["name","roll_number","cut_qty","grand_total","sale_type","status","posting_date"]',
-        'limit_page_length': 100
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getRetailCuttingSales = async (filters = []) => {
+  const params = new URLSearchParams({
+    fields: JSON.stringify(['name', 'roll_number', 'cut_qty', 'grand_total', 'sale_type', 'status', 'posting_date']),
+    filters: JSON.stringify(filters),
+    limit_page_length: 100
+  });
+  
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Retail Cutting Sale?${params}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## POST
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Retail Cutting Sale",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "roll_number": "ROLL-001",
-        "cut_qty": 10.0,
-        "rate": 35.0,
-        "sale_type": "Cash",
-        "posting_date": "2024-01-20"
+```javascript
+const createRetailCuttingSale = async (saleData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Retail Cutting Sale`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(saleData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## PUT
 
-```python
-import requests
-
-response = requests.put(
-    "https://your-site.com/api/resource/Retail Cutting Sale/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "remarks": "Updated remarks"
+```javascript
+const updateRetailCuttingSale = async (name, updateData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Retail Cutting Sale/${name}`,
+    {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(updateData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## DELETE
 
-```python
-import requests
-
-response = requests.delete(
-    "https://your-site.com/api/resource/Retail Cutting Sale/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const deleteRetailCuttingSale = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Retail Cutting Sale/${name}`,
+    {
+      method: 'DELETE',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```
 
 ## SUBMIT
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Retail Cutting Sale/{name}/submit",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const submitRetailCuttingSale = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Retail Cutting Sale/${name}/submit`,
+    {
+      method: 'POST',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```
 
 ## CANCEL
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Retail Cutting Sale/{name}/cancel",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const cancelRetailCuttingSale = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Retail Cutting Sale/${name}/cancel`,
+    {
+      method: 'POST',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```

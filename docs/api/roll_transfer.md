@@ -1,118 +1,128 @@
 # Roll Transfer API
 
+## Setup
+
+```javascript
+const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL || 'https://your-site.com';
+const API_KEY = import.meta.env.VITE_ERPNEXT_API_KEY;
+const API_SECRET = import.meta.env.VITE_ERPNEXT_API_SECRET;
+
+const headers = {
+  'Authorization': `token ${API_KEY}:${API_SECRET}`,
+  'Content-Type': 'application/json'
+};
+```
+
 ## GET
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Roll Transfer/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getRollTransfer = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Roll Transfer/${name}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## GET_MANY
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Roll Transfer",
-    params={
-        'fields': '["name","from_warehouse","to_warehouse","status","posting_date"]',
-        'limit_page_length': 100
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getRollTransfers = async (filters = []) => {
+  const params = new URLSearchParams({
+    fields: JSON.stringify(['name', 'from_warehouse', 'to_warehouse', 'status', 'posting_date']),
+    filters: JSON.stringify(filters),
+    limit_page_length: 100
+  });
+  
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Roll Transfer?${params}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## POST
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Roll Transfer",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "from_warehouse": "Main Warehouse",
-        "to_warehouse": "Secondary Warehouse",
-        "posting_date": "2024-01-20",
-        "items": []
+```javascript
+const createRollTransfer = async (transferData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Roll Transfer`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(transferData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## PUT
 
-```python
-import requests
-
-response = requests.put(
-    "https://your-site.com/api/resource/Roll Transfer/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "remarks": "Updated remarks"
+```javascript
+const updateRollTransfer = async (name, updateData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Roll Transfer/${name}`,
+    {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(updateData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## DELETE
 
-```python
-import requests
-
-response = requests.delete(
-    "https://your-site.com/api/resource/Roll Transfer/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const deleteRollTransfer = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Roll Transfer/${name}`,
+    {
+      method: 'DELETE',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```
 
 ## SUBMIT
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Roll Transfer/{name}/submit",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const submitRollTransfer = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Roll Transfer/${name}/submit`,
+    {
+      method: 'POST',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```
 
 ## CANCEL
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Roll Transfer/{name}/cancel",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const cancelRollTransfer = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Roll Transfer/${name}/cancel`,
+    {
+      method: 'POST',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```

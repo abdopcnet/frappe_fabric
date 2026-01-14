@@ -1,62 +1,124 @@
 # Container Receipt API
 
-## GET
+Frappe Fabric Management Container Receipt APIs.
 
-```python
-import requests
+## Authentication
 
-response = requests.get(
-    "https://your-site.com/api/method/frappe_fabric.api.receipt.get_container_receipt",
-    params={
-        'receipt_no': 'REC-001'
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+All requests require API key authentication:
+
+```
+Authorization: token {API_KEY}:{API_SECRET}
+Content-Type: application/json
 ```
 
-## POST
+## Setup
 
-```python
-import requests
+```javascript
+const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL || 'https://your-site.com';
+const API_KEY = import.meta.env.VITE_ERPNEXT_API_KEY;
+const API_SECRET = import.meta.env.VITE_ERPNEXT_API_SECRET;
 
-response = requests.post(
-    "https://your-site.com/api/method/frappe_fabric.api.receipt.create_container_receipt",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "container_number": "CONT-001",
-        "supplier": "SUP-001",
-        "warehouse": "Main Warehouse",
-        "expected_items": []
-    }
-)
+const headers = {
+  'Authorization': `token ${API_KEY}:${API_SECRET}`,
+  'Content-Type': 'application/json'
+};
 ```
 
-## PUT
+## POST /api/method/frappe_fabric.api.receipt.create_container_receipt
 
-```python
-import requests
+Create new container receipt.
 
-response = requests.post(
-    "https://your-site.com/api/method/frappe_fabric.api.receipt.scan_roll",
-    params={
-        'receipt_no': 'REC-001'
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
+**Body:**
+```json
+{
+  "data": {
+    "container_number": "CONT-1001",
+    "supplier": "SUP-001",
+    "warehouse": "Main Warehouse",
+    "posting_date": "2024-01-15",
+    "expected_items": [
+      {
         "item_code": "FAB-001",
-        "color": "WHITE",
-        "scanned_length": 100.0,
-        "bin_location": "A-01-05"
-    }
-)
+        "expected_rolls": 100,
+        "expected_meters": 5000,
+        "color": "WHITE"
+      }
+    ]
+  }
+}
 ```
+
+**React Example:**
+```javascript
+const createContainerReceipt = async (receiptData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/method/frappe_fabric.api.receipt.create_container_receipt`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ data: receiptData })
+    }
+  );
+  const data = await response.json();
+  return data.message;
+};
+```
+
+## GET /api/method/frappe_fabric.api.receipt.get_container_receipt
+
+Get container receipt details.
+
+**Parameters:**
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| receipt_no | string | Yes | Receipt document name |
+
+**React Example:**
+```javascript
+const getContainerReceipt = async (receiptNo) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/method/frappe_fabric.api.receipt.get_container_receipt?receipt_no=${receiptNo}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.message;
+};
+```
+
+## POST /api/method/frappe_fabric.api.receipt.scan_roll
+
+Scan/add roll to receipt.
+
+**Body:**
+```json
+{
+  "receipt_no": "CR-2024-0001",
+  "roll_data": {
+    "item_code": "FAB-001",
+    "color": "WHITE",
+    "scanned_length": 50.5,
+    "bin_location": "A-01-02"
+  }
+}
+```
+
+**React Example:**
+```javascript
+const scanRoll = async (receiptNo, rollData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/method/frappe_fabric.api.receipt.scan_roll`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ receipt_no: receiptNo, roll_data: rollData })
+    }
+  );
+  const data = await response.json();
+  return data.message;
+};
+```
+
+---
+
+**Updated:** January 2024
+**Version:** 1.0.0

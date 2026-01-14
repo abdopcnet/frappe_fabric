@@ -1,117 +1,128 @@
 # Purchase Receipt API
 
+## Setup
+
+```javascript
+const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL || 'https://your-site.com';
+const API_KEY = import.meta.env.VITE_ERPNEXT_API_KEY;
+const API_SECRET = import.meta.env.VITE_ERPNEXT_API_SECRET;
+
+const headers = {
+  'Authorization': `token ${API_KEY}:${API_SECRET}`,
+  'Content-Type': 'application/json'
+};
+```
+
 ## GET
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Purchase Receipt/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getPurchaseReceipt = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Purchase Receipt/${name}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## GET_MANY
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Purchase Receipt",
-    params={
-        'fields': '["name","supplier","posting_date","status"]',
-        'limit_page_length': 100
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getPurchaseReceipts = async (filters = []) => {
+  const params = new URLSearchParams({
+    fields: JSON.stringify(['name', 'supplier', 'posting_date', 'status']),
+    filters: JSON.stringify(filters),
+    limit_page_length: 100
+  });
+  
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Purchase Receipt?${params}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## POST
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Purchase Receipt",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "supplier": "SUP-001",
-        "posting_date": "2024-01-15",
-        "items": []
+```javascript
+const createPurchaseReceipt = async (receiptData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Purchase Receipt`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(receiptData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## PUT
 
-```python
-import requests
-
-response = requests.put(
-    "https://your-site.com/api/resource/Purchase Receipt/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "remarks": "Updated remarks"
+```javascript
+const updatePurchaseReceipt = async (name, updateData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Purchase Receipt/${name}`,
+    {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(updateData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## DELETE
 
-```python
-import requests
-
-response = requests.delete(
-    "https://your-site.com/api/resource/Purchase Receipt/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const deletePurchaseReceipt = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Purchase Receipt/${name}`,
+    {
+      method: 'DELETE',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```
 
 ## SUBMIT
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Purchase Receipt/{name}/submit",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const submitPurchaseReceipt = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Purchase Receipt/${name}/submit`,
+    {
+      method: 'POST',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```
 
 ## CANCEL
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Purchase Receipt/{name}/cancel",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const cancelPurchaseReceipt = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Purchase Receipt/${name}/cancel`,
+    {
+      method: 'POST',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```

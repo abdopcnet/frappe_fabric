@@ -1,91 +1,96 @@
 # Fabric Roll API
 
+## Setup
+
+```javascript
+const ERPNEXT_URL = import.meta.env.VITE_ERPNEXT_URL || 'https://your-site.com';
+const API_KEY = import.meta.env.VITE_ERPNEXT_API_KEY;
+const API_SECRET = import.meta.env.VITE_ERPNEXT_API_SECRET;
+
+const headers = {
+  'Authorization': `token ${API_KEY}:${API_SECRET}`,
+  'Content-Type': 'application/json'
+};
+```
+
 ## GET
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Fabric Roll/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getFabricRoll = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Roll/${name}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## GET_MANY
 
-```python
-import requests
-
-response = requests.get(
-    "https://your-site.com/api/resource/Fabric Roll",
-    params={
-        'fields': '["name","roll_number","item_code","current_length","warehouse","status"]',
-        'filters': '[["is_active","=",1]]',
-        'limit_page_length': 100
-    },
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    }
-)
+```javascript
+const getFabricRolls = async (filters = []) => {
+  const params = new URLSearchParams({
+    fields: JSON.stringify(['name', 'roll_number', 'item_code', 'current_length', 'warehouse', 'status']),
+    filters: JSON.stringify(filters.length ? filters : [['is_active', '=', 1]]),
+    limit_page_length: 100
+  });
+  
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Roll?${params}`,
+    { headers }
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## POST
 
-```python
-import requests
-
-response = requests.post(
-    "https://your-site.com/api/resource/Fabric Roll",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "roll_number": "ROLL-001",
-        "item_code": "FAB-001",
-        "color": "WHITE",
-        "original_length": 100.0,
-        "warehouse": "Main Warehouse"
+```javascript
+const createFabricRoll = async (rollData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Roll`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(rollData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## PUT
 
-```python
-import requests
-
-response = requests.put(
-    "https://your-site.com/api/resource/Fabric Roll/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
-    },
-    json={
-        "warehouse": "New Warehouse",
-        "bin_location": "A-01-05"
+```javascript
+const updateFabricRoll = async (name, updateData) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Roll/${name}`,
+    {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(updateData)
     }
-)
+  );
+  const data = await response.json();
+  return data.data;
+};
 ```
 
 ## DELETE
 
-```python
-import requests
-
-response = requests.delete(
-    "https://your-site.com/api/resource/Fabric Roll/{name}",
-    params={},
-    headers={
-        'Authorization': 'token {API_KEY}:{API_SECRET}',
-        'Content-Type': 'application/json',
+```javascript
+const deleteFabricRoll = async (name) => {
+  const response = await fetch(
+    `${ERPNEXT_URL}/api/resource/Fabric Roll/${name}`,
+    {
+      method: 'DELETE',
+      headers
     }
-)
+  );
+  const data = await response.json();
+  return data;
+};
 ```
