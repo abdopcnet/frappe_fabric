@@ -10,6 +10,20 @@ bench --site [site-name] install-app frappe_fabric
 bench --site [site-name] migrate
 ```
 
+### Additional Dependencies
+
+The app requires additional Python packages. Install manually if needed:
+
+```bash
+pip install qrcode>=7.3 pillow>=9.0
+```
+
+Or install from requirements.txt:
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Features
 
 - Fabric Roll Management with QR code tracking
