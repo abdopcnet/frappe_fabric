@@ -1,0 +1,96 @@
+{
+  "actions": [],
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "istable": 1,
+  "field_order": [
+    "roll_number",
+    "item_code",
+    "item_name",
+    "color",
+    "balance_before",
+    "cut_qty",
+    "balance_after",
+    "cost_per_meter",
+    "total_cost",
+    "remarks"
+  ],
+  "fields": [
+    {
+      "fieldname": "roll_number",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "رقم الرولون",
+      "options": "Fabric Roll",
+      "reqd": 1
+    },
+    {
+      "fieldname": "item_code",
+      "fieldtype": "Link",
+      "label": "كود المادة",
+      "options": "Fabric Item",
+      "read_only": 1
+    },
+    {
+      "fieldname": "item_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "اسم المادة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "color",
+      "fieldtype": "Data",
+      "label": "اللون",
+      "read_only": 1
+    },
+    {
+      "fieldname": "balance_before",
+      "fieldtype": "Float",
+      "label": "الرصيد قبل",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cut_qty",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "كمية القص (م)",
+      "precision": "2",
+      "reqd": 1
+    },
+    {
+      "fieldname": "balance_after",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "الرصيد بعد",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cost_per_meter",
+      "fieldtype": "Currency",
+      "label": "التكلفة/متر",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_cost",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "إجمالي التكلفة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Data",
+      "label": "ملاحظات"
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Sample Cutting Item",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

@@ -1,0 +1,182 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "is_submittable": 1,
+  "field_order": [
+    "naming_series",
+    "cutting_no",
+    "posting_date",
+    "posting_time",
+    "warehouse",
+    "cb_1",
+    "purpose",
+    "customer",
+    "sb_accounts",
+    "expense_account",
+    "cost_center",
+    "sb_items",
+    "items",
+    "sb_totals",
+    "total_cut_qty",
+    "total_cost",
+    "remarks",
+    "amended_from"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Series",
+      "options": "SC-.YYYY.-.#####",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cutting_no",
+      "fieldtype": "Data",
+      "label": "رقم القص",
+      "read_only": 1
+    },
+    {
+      "fieldname": "posting_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "التاريخ",
+      "reqd": 1,
+      "default": "Today"
+    },
+    {
+      "fieldname": "posting_time",
+      "fieldtype": "Time",
+      "label": "الوقت"
+    },
+    {
+      "fieldname": "warehouse",
+      "fieldtype": "Link",
+      "label": "المستودع",
+      "options": "Warehouse"
+    },
+    {
+      "fieldname": "cb_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "purpose",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "الغرض",
+      "options": "Customer Sample\\nExhibition\\nQuality Test\\nMarketing\\nOther",
+      "default": "Customer Sample"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "العميل",
+      "options": "Customer"
+    },
+    {
+      "fieldname": "sb_accounts",
+      "fieldtype": "Section Break",
+      "label": "الحسابات"
+    },
+    {
+      "fieldname": "expense_account",
+      "fieldtype": "Link",
+      "label": "حساب المصاريف",
+      "options": "Account",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cost_center",
+      "fieldtype": "Link",
+      "label": "مركز التكلفة",
+      "options": "Cost Center"
+    },
+    {
+      "fieldname": "sb_items",
+      "fieldtype": "Section Break",
+      "label": "البنود"
+    },
+    {
+      "fieldname": "items",
+      "fieldtype": "Table",
+      "label": "البنود",
+      "options": "Sample Cutting Item",
+      "reqd": 1
+    },
+    {
+      "fieldname": "sb_totals",
+      "fieldtype": "Section Break",
+      "label": "الإجماليات"
+    },
+    {
+      "fieldname": "total_cut_qty",
+      "fieldtype": "Float",
+      "label": "إجمالي القص (م)",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_cost",
+      "fieldtype": "Currency",
+      "label": "إجمالي التكلفة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Text",
+      "label": "ملاحظات"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "معدل من",
+      "no_copy": 1,
+      "options": "Sample Cutting",
+      "print_hide": 1,
+      "read_only": 1
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Sample Cutting",
+  "naming_rule": "By \"Naming Series\" field",
+  "permissions": [
+    {
+      "amend": 1,
+      "cancel": 1,
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "submit": 1,
+      "write": 1
+    },
+    {
+      "amend": 1,
+      "cancel": 1,
+      "create": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric Manager",
+      "submit": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric User",
+      "submit": 1,
+      "write": 1
+    }
+  ],
+  "search_fields": "purpose,customer",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

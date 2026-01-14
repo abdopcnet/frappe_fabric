@@ -1,0 +1,168 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "batch_id",
+    "item_code",
+    "supplier",
+    "cb_1",
+    "purchase_receipt",
+    "container_receipt",
+    "sb_details",
+    "manufacturing_date",
+    "expiry_date",
+    "country_of_origin",
+    "cb_2",
+    "total_rolls",
+    "total_length",
+    "cost_per_meter",
+    "sb_quality",
+    "quality_grade",
+    "inspection_status",
+    "remarks"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Series",
+      "options": "BATCH-.YYYY.-.#####",
+      "reqd": 1
+    },
+    {
+      "fieldname": "batch_id",
+      "fieldtype": "Data",
+      "label": "رقم الدفعة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "item_code",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "كود المادة",
+      "options": "Fabric Item",
+      "reqd": 1
+    },
+    {
+      "fieldname": "supplier",
+      "fieldtype": "Link",
+      "label": "المورد",
+      "options": "Supplier"
+    },
+    {
+      "fieldname": "cb_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "purchase_receipt",
+      "fieldtype": "Link",
+      "label": "سند الاستلام",
+      "options": "Purchase Receipt"
+    },
+    {
+      "fieldname": "container_receipt",
+      "fieldtype": "Link",
+      "label": "استلام الكونتينر",
+      "options": "Container Receipt"
+    },
+    {
+      "fieldname": "sb_details",
+      "fieldtype": "Section Break",
+      "label": "التفاصيل"
+    },
+    {
+      "fieldname": "manufacturing_date",
+      "fieldtype": "Date",
+      "label": "تاريخ التصنيع"
+    },
+    {
+      "fieldname": "expiry_date",
+      "fieldtype": "Date",
+      "label": "تاريخ الانتهاء"
+    },
+    {
+      "fieldname": "country_of_origin",
+      "fieldtype": "Link",
+      "label": "بلد المنشأ",
+      "options": "Country"
+    },
+    {
+      "fieldname": "cb_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "total_rolls",
+      "fieldtype": "Int",
+      "label": "عدد الرولونات",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_length",
+      "fieldtype": "Float",
+      "label": "الطول الإجمالي",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cost_per_meter",
+      "fieldtype": "Currency",
+      "label": "التكلفة/متر"
+    },
+    {
+      "fieldname": "sb_quality",
+      "fieldtype": "Section Break",
+      "label": "الجودة"
+    },
+    {
+      "fieldname": "quality_grade",
+      "fieldtype": "Select",
+      "label": "درجة الجودة",
+      "options": "\\nA\\nB\\nC"
+    },
+    {
+      "fieldname": "inspection_status",
+      "fieldtype": "Select",
+      "label": "حالة الفحص",
+      "options": "Pending\\nPassed\\nFailed",
+      "default": "Pending"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Text",
+      "label": "ملاحظات"
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Fabric Batch",
+  "naming_rule": "By \"Naming Series\" field",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "role": "System Manager",
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "role": "Fabric Manager",
+      "write": 1
+    },
+    {
+      "create": 1,
+      "read": 1,
+      "role": "Fabric User",
+      "write": 1
+    }
+  ],
+  "search_fields": "item_code,supplier",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

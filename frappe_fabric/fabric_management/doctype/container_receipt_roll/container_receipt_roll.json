@@ -1,0 +1,77 @@
+{
+  "actions": [],
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "istable": 1,
+  "field_order": [
+    "roll_number",
+    "item_code",
+    "color",
+    "scanned_length",
+    "bin_location",
+    "scan_time",
+    "quality_status",
+    "remarks"
+  ],
+  "fields": [
+    {
+      "fieldname": "roll_number",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "رقم الرولون",
+      "options": "Fabric Roll",
+      "reqd": 1
+    },
+    {
+      "fieldname": "item_code",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "كود المادة",
+      "options": "Fabric Item"
+    },
+    {
+      "fieldname": "color",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "اللون"
+    },
+    {
+      "fieldname": "scanned_length",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "الطول الممسوح",
+      "precision": "2",
+      "reqd": 1
+    },
+    {
+      "fieldname": "bin_location",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "موقع الرف"
+    },
+    {
+      "fieldname": "scan_time",
+      "fieldtype": "Datetime",
+      "label": "وقت المسح"
+    },
+    {
+      "fieldname": "quality_status",
+      "fieldtype": "Select",
+      "label": "حالة الجودة",
+      "options": "Passed\\nFailed\\nPending",
+      "default": "Passed"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Data",
+      "label": "ملاحظات"
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Container Receipt Roll",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

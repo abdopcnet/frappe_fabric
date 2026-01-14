@@ -1,0 +1,238 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "posting_date",
+    "posting_time",
+    "roll_number",
+    "item_code",
+    "sb_movement",
+    "movement_type",
+    "quantity",
+    "cb_1",
+    "balance_before",
+    "balance_after",
+    "sb_warehouse",
+    "warehouse",
+    "bin_location",
+    "cb_2",
+    "warehouse_to",
+    "bin_location_to",
+    "sb_reference",
+    "reference_doctype",
+    "reference_name",
+    "sb_accounting",
+    "account",
+    "cost_center",
+    "amount",
+    "sb_more",
+    "created_by",
+    "remarks"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Series",
+      "options": "RM-.YYYY.-.#####",
+      "reqd": 1
+    },
+    {
+      "fieldname": "posting_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "التاريخ",
+      "reqd": 1,
+      "default": "Today"
+    },
+    {
+      "fieldname": "posting_time",
+      "fieldtype": "Time",
+      "label": "الوقت"
+    },
+    {
+      "fieldname": "roll_number",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "رقم الرولون",
+      "options": "Fabric Roll",
+      "reqd": 1
+    },
+    {
+      "fetch_from": "roll_number.item_code",
+      "fieldname": "item_code",
+      "fieldtype": "Link",
+      "label": "كود المادة",
+      "options": "Fabric Item",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sb_movement",
+      "fieldtype": "Section Break",
+      "label": "الحركة"
+    },
+    {
+      "fieldname": "movement_type",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "نوع الحركة",
+      "options": "Receipt\\nSample Cutting\\nRetail Sale\\nWholesale Sale\\nTransfer\\nAdjustment\\nReturn\\nStock Take",
+      "reqd": 1
+    },
+    {
+      "fieldname": "quantity",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "الكمية",
+      "precision": "2",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cb_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "balance_before",
+      "fieldtype": "Float",
+      "label": "الرصيد قبل",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "balance_after",
+      "fieldtype": "Float",
+      "label": "الرصيد بعد",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sb_warehouse",
+      "fieldtype": "Section Break",
+      "label": "المستودع"
+    },
+    {
+      "fieldname": "warehouse",
+      "fieldtype": "Link",
+      "label": "من مستودع",
+      "options": "Warehouse"
+    },
+    {
+      "fieldname": "bin_location",
+      "fieldtype": "Data",
+      "label": "من موقع"
+    },
+    {
+      "fieldname": "cb_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "warehouse_to",
+      "fieldtype": "Link",
+      "label": "إلى مستودع",
+      "options": "Warehouse"
+    },
+    {
+      "fieldname": "bin_location_to",
+      "fieldtype": "Data",
+      "label": "إلى موقع"
+    },
+    {
+      "fieldname": "sb_reference",
+      "fieldtype": "Section Break",
+      "label": "المرجع"
+    },
+    {
+      "fieldname": "reference_doctype",
+      "fieldtype": "Link",
+      "label": "نوع المستند",
+      "options": "DocType"
+    },
+    {
+      "fieldname": "reference_name",
+      "fieldtype": "Dynamic Link",
+      "label": "رقم المستند",
+      "options": "reference_doctype"
+    },
+    {
+      "fieldname": "sb_accounting",
+      "fieldtype": "Section Break",
+      "label": "المحاسبة"
+    },
+    {
+      "fieldname": "account",
+      "fieldtype": "Link",
+      "label": "الحساب",
+      "options": "Account"
+    },
+    {
+      "fieldname": "cost_center",
+      "fieldtype": "Link",
+      "label": "مركز التكلفة",
+      "options": "Cost Center"
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "المبلغ"
+    },
+    {
+      "fieldname": "sb_more",
+      "fieldtype": "Section Break",
+      "label": "معلومات إضافية"
+    },
+    {
+      "fieldname": "created_by",
+      "fieldtype": "Link",
+      "label": "المنفذ",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Text",
+      "label": "ملاحظات"
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Roll Movement",
+  "naming_rule": "By \"Naming Series\" field",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric Manager",
+      "write": 1
+    },
+    {
+      "read": 1,
+      "report": 1,
+      "role": "Fabric User"
+    },
+    {
+      "read": 1,
+      "report": 1,
+      "role": "Fabric Viewer"
+    }
+  ],
+  "search_fields": "roll_number,movement_type",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

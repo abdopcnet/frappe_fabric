@@ -1,0 +1,74 @@
+{
+  "actions": [],
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "istable": 1,
+  "field_order": [
+    "item_code",
+    "color",
+    "expected_rolls",
+    "expected_meters",
+    "received_rolls",
+    "received_meters",
+    "remarks"
+  ],
+  "fields": [
+    {
+      "fieldname": "item_code",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "كود المادة",
+      "options": "Fabric Item",
+      "reqd": 1
+    },
+    {
+      "fieldname": "color",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "اللون",
+      "options": "Fabric Color"
+    },
+    {
+      "fieldname": "expected_rolls",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "عدد الرولونات المتوقع",
+      "reqd": 1
+    },
+    {
+      "fieldname": "expected_meters",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "الأمتار المتوقعة",
+      "precision": "2",
+      "reqd": 1
+    },
+    {
+      "fieldname": "received_rolls",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "عدد المستلم",
+      "read_only": 1
+    },
+    {
+      "fieldname": "received_meters",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "الأمتار المستلمة",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Data",
+      "label": "ملاحظات"
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Container Receipt Expected Item",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

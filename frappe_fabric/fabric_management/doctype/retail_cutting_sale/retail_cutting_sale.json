@@ -1,0 +1,337 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "is_submittable": 1,
+  "field_order": [
+    "naming_series",
+    "invoice_no",
+    "posting_date",
+    "posting_time",
+    "sb_roll",
+    "roll_number",
+    "item_code",
+    "item_name",
+    "color",
+    "cb_1",
+    "balance_before",
+    "cut_qty",
+    "balance_after",
+    "sb_pricing",
+    "rate",
+    "amount",
+    "discount_percentage",
+    "discount_amount",
+    "cb_2",
+    "net_amount",
+    "tax_amount",
+    "grand_total",
+    "sb_sale",
+    "sale_type",
+    "customer",
+    "customer_name",
+    "warehouse",
+    "sb_accounts",
+    "debit_account",
+    "income_account",
+    "cost_center",
+    "sb_cost",
+    "cost_per_meter",
+    "total_cost",
+    "gross_profit",
+    "sb_more",
+    "sales_person",
+    "remarks",
+    "amended_from"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Series",
+      "options": "RCS-.YYYY.-.#####",
+      "reqd": 1
+    },
+    {
+      "fieldname": "invoice_no",
+      "fieldtype": "Data",
+      "label": "رقم الفاتورة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "posting_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "التاريخ",
+      "reqd": 1,
+      "default": "Today"
+    },
+    {
+      "fieldname": "posting_time",
+      "fieldtype": "Time",
+      "label": "الوقت"
+    },
+    {
+      "fieldname": "sb_roll",
+      "fieldtype": "Section Break",
+      "label": "الرولون"
+    },
+    {
+      "fieldname": "roll_number",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "رقم الرولون",
+      "options": "Fabric Roll",
+      "reqd": 1
+    },
+    {
+      "fetch_from": "roll_number.item_code",
+      "fieldname": "item_code",
+      "fieldtype": "Link",
+      "label": "كود المادة",
+      "options": "Fabric Item",
+      "read_only": 1
+    },
+    {
+      "fetch_from": "roll_number.item_name",
+      "fieldname": "item_name",
+      "fieldtype": "Data",
+      "label": "اسم المادة",
+      "read_only": 1
+    },
+    {
+      "fetch_from": "roll_number.color",
+      "fieldname": "color",
+      "fieldtype": "Data",
+      "label": "اللون",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cb_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "balance_before",
+      "fieldtype": "Float",
+      "label": "الرصيد قبل",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cut_qty",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "الكمية المباعة (م)",
+      "precision": "2",
+      "reqd": 1
+    },
+    {
+      "fieldname": "balance_after",
+      "fieldtype": "Float",
+      "label": "الرصيد بعد",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sb_pricing",
+      "fieldtype": "Section Break",
+      "label": "التسعير"
+    },
+    {
+      "fieldname": "rate",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "السعر/متر",
+      "reqd": 1
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "المبلغ",
+      "read_only": 1
+    },
+    {
+      "fieldname": "discount_percentage",
+      "fieldtype": "Percent",
+      "label": "نسبة الخصم",
+      "default": "0"
+    },
+    {
+      "fieldname": "discount_amount",
+      "fieldtype": "Currency",
+      "label": "مبلغ الخصم",
+      "default": "0"
+    },
+    {
+      "fieldname": "cb_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "net_amount",
+      "fieldtype": "Currency",
+      "label": "الصافي",
+      "read_only": 1
+    },
+    {
+      "fieldname": "tax_amount",
+      "fieldtype": "Currency",
+      "label": "الضريبة",
+      "default": "0"
+    },
+    {
+      "bold": 1,
+      "fieldname": "grand_total",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "الإجمالي",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sb_sale",
+      "fieldtype": "Section Break",
+      "label": "نوع البيع"
+    },
+    {
+      "fieldname": "sale_type",
+      "fieldtype": "Select",
+      "in_standard_filter": 1,
+      "label": "نوع البيع",
+      "options": "Cash\\nCredit",
+      "reqd": 1,
+      "default": "Cash"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "العميل",
+      "options": "Customer"
+    },
+    {
+      "fetch_from": "customer.customer_name",
+      "fieldname": "customer_name",
+      "fieldtype": "Data",
+      "label": "اسم العميل",
+      "read_only": 1
+    },
+    {
+      "fieldname": "warehouse",
+      "fieldtype": "Link",
+      "label": "المستودع",
+      "options": "Warehouse"
+    },
+    {
+      "fieldname": "sb_accounts",
+      "fieldtype": "Section Break",
+      "label": "الحسابات"
+    },
+    {
+      "fieldname": "debit_account",
+      "fieldtype": "Link",
+      "label": "الحساب المدين",
+      "options": "Account"
+    },
+    {
+      "fieldname": "income_account",
+      "fieldtype": "Link",
+      "label": "حساب الإيرادات",
+      "options": "Account"
+    },
+    {
+      "fieldname": "cost_center",
+      "fieldtype": "Link",
+      "label": "مركز التكلفة",
+      "options": "Cost Center"
+    },
+    {
+      "fieldname": "sb_cost",
+      "fieldtype": "Section Break",
+      "label": "تتبع التكلفة"
+    },
+    {
+      "fieldname": "cost_per_meter",
+      "fieldtype": "Currency",
+      "label": "تكلفة/متر",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_cost",
+      "fieldtype": "Currency",
+      "label": "إجمالي التكلفة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "gross_profit",
+      "fieldtype": "Currency",
+      "label": "الربح الإجمالي",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sb_more",
+      "fieldtype": "Section Break",
+      "label": "معلومات إضافية"
+    },
+    {
+      "fieldname": "sales_person",
+      "fieldtype": "Link",
+      "label": "مندوب المبيعات",
+      "options": "Sales Person"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Text",
+      "label": "ملاحظات"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "معدل من",
+      "no_copy": 1,
+      "options": "Retail Cutting Sale",
+      "print_hide": 1,
+      "read_only": 1
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Retail Cutting Sale",
+  "naming_rule": "By \"Naming Series\" field",
+  "permissions": [
+    {
+      "amend": 1,
+      "cancel": 1,
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "submit": 1,
+      "write": 1
+    },
+    {
+      "amend": 1,
+      "cancel": 1,
+      "create": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric Manager",
+      "submit": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric User",
+      "submit": 1,
+      "write": 1
+    }
+  ],
+  "search_fields": "roll_number,customer",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "title_field": "invoice_no",
+  "track_changes": 1
+}

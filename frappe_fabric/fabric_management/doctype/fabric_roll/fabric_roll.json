@@ -1,0 +1,345 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "roll_number",
+    "item_code",
+    "item_name",
+    "color",
+    "color_name",
+    "cb_item",
+    "batch_id",
+    "barcode",
+    "sb_length",
+    "original_length",
+    "current_length",
+    "cb_length",
+    "consumed_length",
+    "reserved_length",
+    "available_length",
+    "sb_warehouse",
+    "warehouse",
+    "bin_location",
+    "cb_warehouse",
+    "status",
+    "is_active",
+    "sb_costing",
+    "cost_per_meter",
+    "total_cost",
+    "cb_costing",
+    "currency",
+    "sb_reference",
+    "container_receipt",
+    "purchase_order",
+    "supplier",
+    "receipt_date",
+    "sb_qr",
+    "qr_code",
+    "sb_tracking",
+    "last_movement_date",
+    "last_movement_type",
+    "remarks"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "ROLL-.YYYY.-.#####",
+      "reqd": 1
+    },
+    {
+      "fieldname": "roll_number",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "رقم الرولون",
+      "read_only": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "item_code",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "كود المادة",
+      "options": "Fabric Item",
+      "reqd": 1
+    },
+    {
+      "fetch_from": "item_code.item_name",
+      "fieldname": "item_name",
+      "fieldtype": "Data",
+      "label": "اسم المادة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "color",
+      "fieldtype": "Link",
+      "in_standard_filter": 1,
+      "label": "اللون",
+      "options": "Fabric Color"
+    },
+    {
+      "fetch_from": "color.color_name",
+      "fieldname": "color_name",
+      "fieldtype": "Data",
+      "label": "اسم اللون",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cb_item",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "batch_id",
+      "fieldtype": "Link",
+      "label": "رقم الدفعة",
+      "options": "Fabric Batch"
+    },
+    {
+      "fieldname": "barcode",
+      "fieldtype": "Data",
+      "label": "باركود"
+    },
+    {
+      "fieldname": "sb_length",
+      "fieldtype": "Section Break",
+      "label": "الأطوال"
+    },
+    {
+      "fieldname": "original_length",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "الطول الأصلي (م)",
+      "precision": "2",
+      "reqd": 1
+    },
+    {
+      "bold": 1,
+      "fieldname": "current_length",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "الطول الحالي (م)",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cb_length",
+      "fieldtype": "Column Break"
+    },
+    {
+      "default": "0",
+      "fieldname": "consumed_length",
+      "fieldtype": "Float",
+      "label": "المستهلك (م)",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "default": "0",
+      "fieldname": "reserved_length",
+      "fieldtype": "Float",
+      "label": "المحجوز (م)",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "bold": 1,
+      "fieldname": "available_length",
+      "fieldtype": "Float",
+      "label": "المتاح (م)",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sb_warehouse",
+      "fieldtype": "Section Break",
+      "label": "الموقع"
+    },
+    {
+      "fieldname": "warehouse",
+      "fieldtype": "Link",
+      "in_standard_filter": 1,
+      "label": "المستودع",
+      "options": "Warehouse",
+      "reqd": 1
+    },
+    {
+      "fieldname": "bin_location",
+      "fieldtype": "Data",
+      "label": "موقع الرف"
+    },
+    {
+      "fieldname": "cb_warehouse",
+      "fieldtype": "Column Break"
+    },
+    {
+      "default": "Available",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "الحالة",
+      "options": "Available\\nReserved\\nIn Transit\\nExhausted\\nDamaged\\nOn Hold"
+    },
+    {
+      "default": "1",
+      "fieldname": "is_active",
+      "fieldtype": "Check",
+      "label": "نشط"
+    },
+    {
+      "fieldname": "sb_costing",
+      "fieldtype": "Section Break",
+      "label": "التكلفة"
+    },
+    {
+      "fieldname": "cost_per_meter",
+      "fieldtype": "Currency",
+      "label": "التكلفة/متر"
+    },
+    {
+      "fieldname": "total_cost",
+      "fieldtype": "Currency",
+      "label": "إجمالي التكلفة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cb_costing",
+      "fieldtype": "Column Break"
+    },
+    {
+      "default": "SAR",
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "label": "العملة",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "sb_reference",
+      "fieldtype": "Section Break",
+      "label": "المرجع"
+    },
+    {
+      "fieldname": "container_receipt",
+      "fieldtype": "Link",
+      "label": "سند الاستلام",
+      "options": "Container Receipt"
+    },
+    {
+      "fieldname": "purchase_order",
+      "fieldtype": "Link",
+      "label": "أمر الشراء",
+      "options": "Purchase Order"
+    },
+    {
+      "fieldname": "supplier",
+      "fieldtype": "Link",
+      "label": "المورد",
+      "options": "Supplier"
+    },
+    {
+      "fieldname": "receipt_date",
+      "fieldtype": "Date",
+      "label": "تاريخ الاستلام"
+    },
+    {
+      "fieldname": "sb_qr",
+      "fieldtype": "Section Break",
+      "label": "QR Code"
+    },
+    {
+      "fieldname": "qr_code",
+      "fieldtype": "Attach Image",
+      "label": "QR Code"
+    },
+    {
+      "fieldname": "sb_tracking",
+      "fieldtype": "Section Break",
+      "label": "التتبع"
+    },
+    {
+      "fieldname": "last_movement_date",
+      "fieldtype": "Datetime",
+      "label": "آخر حركة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "last_movement_type",
+      "fieldtype": "Data",
+      "label": "نوع آخر حركة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "ملاحظات"
+    }
+  ],
+  "links": [
+    {
+      "group": "حركات",
+      "link_doctype": "Roll Movement",
+      "link_fieldname": "roll_number"
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Fabric Roll",
+  "naming_rule": "By \"Naming Series\" field",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric User",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric Viewer"
+    }
+  ],
+  "search_fields": "item_code,item_name,color_name,warehouse",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "title_field": "roll_number",
+  "track_changes": 1
+}

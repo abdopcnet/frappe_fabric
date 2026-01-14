@@ -1,0 +1,76 @@
+{
+  "actions": [],
+  "autoname": "field:color_code",
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "color_code",
+    "color_name",
+    "color_name_en",
+    "hex_code",
+    "image"
+  ],
+  "fields": [
+    {
+      "fieldname": "color_code",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "كود اللون",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "color_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "اسم اللون",
+      "reqd": 1
+    },
+    {
+      "fieldname": "color_name_en",
+      "fieldtype": "Data",
+      "label": "Color Name (EN)"
+    },
+    {
+      "fieldname": "hex_code",
+      "fieldtype": "Data",
+      "label": "HEX Code"
+    },
+    {
+      "fieldname": "image",
+      "fieldtype": "Attach Image",
+      "label": "صورة اللون"
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Fabric Color",
+  "naming_rule": "By fieldname",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "role": "System Manager",
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "role": "Fabric Manager",
+      "write": 1
+    },
+    {
+      "create": 1,
+      "read": 1,
+      "role": "Fabric User",
+      "write": 1
+    }
+  ],
+  "quick_entry": 1,
+  "search_fields": "color_name,color_name_en",
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

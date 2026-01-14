@@ -1,0 +1,71 @@
+{
+  "actions": [],
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "istable": 1,
+  "field_order": [
+    "roll_number",
+    "item_code",
+    "item_name",
+    "color",
+    "current_length",
+    "from_bin",
+    "to_bin"
+  ],
+  "fields": [
+    {
+      "fieldname": "roll_number",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "رقم الرولون",
+      "options": "Fabric Roll",
+      "reqd": 1
+    },
+    {
+      "fieldname": "item_code",
+      "fieldtype": "Link",
+      "label": "كود المادة",
+      "options": "Fabric Item",
+      "read_only": 1
+    },
+    {
+      "fieldname": "item_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "اسم المادة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "color",
+      "fieldtype": "Data",
+      "label": "اللون",
+      "read_only": 1
+    },
+    {
+      "fieldname": "current_length",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "الطول الحالي",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "from_bin",
+      "fieldtype": "Data",
+      "label": "من موقع"
+    },
+    {
+      "fieldname": "to_bin",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "إلى موقع"
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Roll Transfer Item",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

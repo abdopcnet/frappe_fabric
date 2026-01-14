@@ -1,0 +1,4 @@
+frappe
+erpnext
+qrcode>=7.3
+pillow>=9.0

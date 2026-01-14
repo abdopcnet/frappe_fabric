@@ -1,0 +1,261 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "creation": "2024-01-15 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "is_submittable": 1,
+  "field_order": [
+    "naming_series",
+    "container_number",
+    "status",
+    "cb_1",
+    "posting_date",
+    "posting_time",
+    "sb_supplier",
+    "supplier",
+    "purchase_order",
+    "cb_supplier",
+    "bill_of_lading",
+    "shipping_company",
+    "sb_warehouse",
+    "warehouse",
+    "sb_expected",
+    "expected_items",
+    "sb_summary_expected",
+    "total_expected_rolls",
+    "total_expected_meters",
+    "sb_received",
+    "received_rolls",
+    "sb_summary_received",
+    "total_received_rolls",
+    "total_received_meters",
+    "sb_variance",
+    "roll_variance",
+    "meter_variance",
+    "sb_remarks",
+    "remarks",
+    "amended_from"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Series",
+      "options": "CONT-.YYYY.-.#####",
+      "reqd": 1
+    },
+    {
+      "fieldname": "container_number",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "رقم الكونتينر",
+      "reqd": 1
+    },
+    {
+      "default": "Draft",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "الحالة",
+      "options": "Draft\\nIn Progress\\nCompleted\\nCancelled",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cb_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "default": "Today",
+      "fieldname": "posting_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "تاريخ الاستلام",
+      "reqd": 1
+    },
+    {
+      "fieldname": "posting_time",
+      "fieldtype": "Time",
+      "label": "الوقت"
+    },
+    {
+      "fieldname": "sb_supplier",
+      "fieldtype": "Section Break",
+      "label": "المورد"
+    },
+    {
+      "fieldname": "supplier",
+      "fieldtype": "Link",
+      "in_standard_filter": 1,
+      "label": "المورد",
+      "options": "Supplier"
+    },
+    {
+      "fieldname": "purchase_order",
+      "fieldtype": "Link",
+      "label": "أمر الشراء",
+      "options": "Purchase Order"
+    },
+    {
+      "fieldname": "cb_supplier",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "bill_of_lading",
+      "fieldtype": "Data",
+      "label": "بوليصة الشحن"
+    },
+    {
+      "fieldname": "shipping_company",
+      "fieldtype": "Link",
+      "label": "شركة الشحن",
+      "options": "Supplier"
+    },
+    {
+      "fieldname": "sb_warehouse",
+      "fieldtype": "Section Break",
+      "label": "المستودع"
+    },
+    {
+      "fieldname": "warehouse",
+      "fieldtype": "Link",
+      "label": "المستودع",
+      "options": "Warehouse",
+      "reqd": 1
+    },
+    {
+      "fieldname": "sb_expected",
+      "fieldtype": "Section Break",
+      "label": "البنود المتوقعة"
+    },
+    {
+      "fieldname": "expected_items",
+      "fieldtype": "Table",
+      "label": "البنود المتوقعة",
+      "options": "Container Receipt Expected Item"
+    },
+    {
+      "fieldname": "sb_summary_expected",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "total_expected_rolls",
+      "fieldtype": "Int",
+      "label": "إجمالي الرولونات المتوقعة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_expected_meters",
+      "fieldtype": "Float",
+      "label": "إجمالي الأمتار المتوقعة",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sb_received",
+      "fieldtype": "Section Break",
+      "label": "الرولونات المستلمة"
+    },
+    {
+      "fieldname": "received_rolls",
+      "fieldtype": "Table",
+      "label": "الرولونات المستلمة",
+      "options": "Container Receipt Roll"
+    },
+    {
+      "fieldname": "sb_summary_received",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "total_received_rolls",
+      "fieldtype": "Int",
+      "label": "إجمالي الرولونات المستلمة",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_received_meters",
+      "fieldtype": "Float",
+      "label": "إجمالي الأمتار المستلمة",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sb_variance",
+      "fieldtype": "Section Break",
+      "label": "الفروقات"
+    },
+    {
+      "fieldname": "roll_variance",
+      "fieldtype": "Int",
+      "label": "فرق الرولونات",
+      "read_only": 1
+    },
+    {
+      "fieldname": "meter_variance",
+      "fieldtype": "Float",
+      "label": "فرق الأمتار",
+      "precision": "2",
+      "read_only": 1
+    },
+    {
+      "collapsible": 1,
+      "fieldname": "sb_remarks",
+      "fieldtype": "Section Break",
+      "label": "ملاحظات"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Text",
+      "label": "ملاحظات"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "معدل من",
+      "no_copy": 1,
+      "options": "Container Receipt",
+      "print_hide": 1,
+      "read_only": 1
+    }
+  ],
+  "modified": "2024-01-15 10:00:00.000000",
+  "module": "Fabric Management",
+  "name": "Container Receipt",
+  "naming_rule": "By \"Naming Series\" field",
+  "permissions": [
+    {
+      "amend": 1,
+      "cancel": 1,
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "submit": 1,
+      "write": 1
+    },
+    {
+      "amend": 1,
+      "cancel": 1,
+      "create": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric Manager",
+      "submit": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Fabric User",
+      "write": 1
+    }
+  ],
+  "search_fields": "container_number,supplier",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "title_field": "container_number",
+  "track_changes": 1
+}
